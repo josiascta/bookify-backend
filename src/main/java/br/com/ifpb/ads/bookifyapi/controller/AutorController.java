@@ -1,8 +1,10 @@
 package br.com.ifpb.ads.bookifyapi.controller;
 
+import br.com.ifpb.ads.bookifyapi.dto.AutorCreateDTO;
+import br.com.ifpb.ads.bookifyapi.dto.AutorDTO;
 import br.com.ifpb.ads.bookifyapi.dto.BookCreateDTO;
 import br.com.ifpb.ads.bookifyapi.dto.BookDTO;
-import br.com.ifpb.ads.bookifyapi.entity.Book;
+import br.com.ifpb.ads.bookifyapi.service.AutorService;
 import br.com.ifpb.ads.bookifyapi.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,20 +17,13 @@ import javax.validation.Valid;
 @RestController
 @Validated
 @RequiredArgsConstructor
-@RequestMapping("/livro")
-public class BookController {
+@RequestMapping("/autor")
+public class AutorController {
 
-    private final BookService bookService;
-
-    @PostMapping
-    public ResponseEntity<BookDTO> create(@Valid @RequestBody BookCreateDTO pessoa) throws Exception {
-        return new ResponseEntity<>(bookService.create(pessoa), HttpStatus.OK);
-    }
+    private final AutorService autorService;
 
     @GetMapping("/{id}")
-    public BookDTO findById(@PathVariable Integer id) throws Exception {
-        return bookService.findById(id);
+    public AutorDTO findById(@PathVariable Integer id) throws Exception {
+        return autorService.findById(id);
     }
-
-
 }
