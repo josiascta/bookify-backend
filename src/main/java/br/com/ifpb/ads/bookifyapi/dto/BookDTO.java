@@ -1,9 +1,8 @@
 package br.com.ifpb.ads.bookifyapi.dto;
 
-import br.com.ifpb.ads.bookifyapi.entity.Autor;
+import br.com.ifpb.ads.bookifyapi.entity.Author;
 import lombok.*;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -25,6 +24,6 @@ public class BookDTO {
 
     private double price;
 
-    private List<Autor> autores;
+    private List<Author> autores;
 
 }

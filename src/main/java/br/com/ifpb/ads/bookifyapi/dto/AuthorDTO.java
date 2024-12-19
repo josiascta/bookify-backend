@@ -1,10 +1,8 @@
 package br.com.ifpb.ads.bookifyapi.dto;
 
 import br.com.ifpb.ads.bookifyapi.entity.Book;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.List;
 
 @AllArgsConstructor
@@ -12,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class AutorDTO {
+public class AuthorDTO {
 
     private Integer id;
 

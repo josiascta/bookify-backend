@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class AutorCreateDTO {
+public class AuthorCreateDTO {
 
     private String name;
 

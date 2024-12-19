@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity(name = "CATEGORIA")
-public class Categoria {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CATEGORIA")
@@ -22,4 +22,6 @@ public class Categoria {
 
     @Column(name = "name")
     private String name;
+
+
 }

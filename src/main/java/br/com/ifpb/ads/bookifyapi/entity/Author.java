@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity(name = "AUTOR")
-public class Autor {
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_AUTOR")
