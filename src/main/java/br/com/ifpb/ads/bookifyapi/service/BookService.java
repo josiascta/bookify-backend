@@ -50,5 +50,26 @@ public class BookService {
         return objectMapper.convertValue(getBook(id), BookDTO.class);
     }
 
+    public BookDTO editar(BookCreateDTO dto, Integer id) throws RegraDeNegocioException {
+        Book livroRecuperado = getBook(id);
 
+        livroRecuperado.setPrice(dto.getPrice());
+        livroRecuperado.setTitle(dto.getTitle());
+        livroRecuperado.setQuantity_stock(dto.getQuantity_stock());
+
+        List<Author> autores = authorRepository.findAllById(dto.getAutores_ids());
+        if (dto.getAutores_ids().size() != autores.size()) {
+            throw new RegraDeNegocioException("Um ou mais autores não existentes!");
+        }
+        livroRecuperado.setAutores(autores);
+
+        livroRecuperado = bookRepository.save(livroRecuperado);
+
+        return convertToDTO(livroRecuperado);
+    }
+
+    public void delete(Integer id) throws RegraDeNegocioException {
+        Book book = getBook(id);
+        bookRepository.delete(book);
+    }
 }

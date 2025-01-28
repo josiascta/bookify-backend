@@ -3,6 +3,7 @@ package br.com.ifpb.ads.bookifyapi.controller;
 import br.com.ifpb.ads.bookifyapi.dto.BookCreateDTO;
 import br.com.ifpb.ads.bookifyapi.dto.BookDTO;
 import br.com.ifpb.ads.bookifyapi.entity.Book;
+import br.com.ifpb.ads.bookifyapi.exception.RegraDeNegocioException;
 import br.com.ifpb.ads.bookifyapi.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,5 +31,14 @@ public class BookController {
         return bookService.findById(id);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
+        bookService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<BookDTO> update(@PathVariable Integer id, @RequestBody BookCreateDTO bookCreateDTO) throws Exception {
+        return new ResponseEntity<>(bookService.editar(bookCreateDTO, id), HttpStatus.OK);
+    }
 }
