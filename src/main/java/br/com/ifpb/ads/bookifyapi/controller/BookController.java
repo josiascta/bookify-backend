@@ -6,6 +6,7 @@ import br.com.ifpb.ads.bookifyapi.entity.Book;
 import br.com.ifpb.ads.bookifyapi.exception.RegraDeNegocioException;
 import br.com.ifpb.ads.bookifyapi.service.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -40,5 +41,14 @@ public class BookController {
     @PutMapping("/{id}")
     public ResponseEntity<BookDTO> update(@PathVariable Integer id, @RequestBody BookCreateDTO bookCreateDTO) throws Exception {
         return new ResponseEntity<>(bookService.editar(bookCreateDTO, id), HttpStatus.OK);
+    }
+    @GetMapping
+    public ResponseEntity<Page<BookDTO>> findAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortField,
+            @RequestParam(defaultValue = "asc") String sortDirection) {
+        Page<BookDTO> books = bookService.findAll(page, size, sortField, sortDirection);
+        return ResponseEntity.ok(books);
     }
 }
