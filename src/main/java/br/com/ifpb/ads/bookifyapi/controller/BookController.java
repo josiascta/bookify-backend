@@ -2,8 +2,6 @@ package br.com.ifpb.ads.bookifyapi.controller;
 
 import br.com.ifpb.ads.bookifyapi.dto.BookCreateDTO;
 import br.com.ifpb.ads.bookifyapi.dto.BookDTO;
-import br.com.ifpb.ads.bookifyapi.entity.Book;
-import br.com.ifpb.ads.bookifyapi.exception.RegraDeNegocioException;
 import br.com.ifpb.ads.bookifyapi.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

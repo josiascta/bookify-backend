@@ -13,6 +13,7 @@ import java.util.List;
 @ToString
 public class BookCreateDTO {
 
+    private Integer id;
     @NotNull
     @NotEmpty
     private String title;
