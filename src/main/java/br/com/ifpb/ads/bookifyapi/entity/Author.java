@@ -8,24 +8,27 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
-
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@Entity(name = "AUTOR")
+@Entity
+@Table(name = "AUTOR")
 public class Author {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_AUTOR")
-    @SequenceGenerator(name = "SEQ_AUTOR", sequenceName = "SEQ_AUTOR", allocationSize = 1)
     @Column(name = "id_autor")
-    private Integer id;
+    private Long id;
 
-    @Column(name = "nome")
-    private String name;
+    @Column(name = "NOME")
+    private String nome;
 
     @ManyToMany(mappedBy = "autores")
     @JsonIgnoreProperties("autores")
     private List<Book> livros;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
 }

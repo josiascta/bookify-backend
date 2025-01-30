@@ -1,26 +1,23 @@
 package br.com.ifpb.ads.bookifyapi.dto;
 
+import br.com.ifpb.ads.bookifyapi.entity.Author;
 import lombok.*;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class BookCreateDTO {
-
-    private Integer id;
-    @NotNull
-    @NotEmpty
+    private Long id;  // Adicionei o id aqui
     private String title;
+    private Double price;
+    private Integer quantity_stock;
+    private List<Long> autores_ids;
 
-    private int quantity_stock;
+    public List<Long> getAutores() {
+        return autores_ids;
+    }
 
-    private double price;
-
-    private List<Integer> autores_ids;
 }

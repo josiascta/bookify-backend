@@ -12,9 +12,12 @@ import java.util.List;
 @ToString
 public class AuthorDTO {
 
-    private Integer id;
+    private Long id;
 
-    private String name;
+    private String nome;
 
     private List<Book> livros;
+    public String getNome() {
+        return nome;
+    }
 }

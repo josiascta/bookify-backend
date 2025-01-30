@@ -11,8 +11,11 @@ import java.util.List;
 @Setter
 @ToString
 public class AuthorCreateDTO {
-
-    private String name;
+    private Long id;
+    private String nome;
 
     private List<Book> livros;
+    public String getNome() {
+        return nome;
+    }
 }

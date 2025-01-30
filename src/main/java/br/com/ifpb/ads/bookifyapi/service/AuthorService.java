@@ -9,23 +9,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class AuthorService {
 
     private final ObjectMapper objectMapper;
     private final AuthorRepository authorRepository;
-    private final BookRepository bookRepository;
 
-    private Author getAutor(Integer id) throws RegraDeNegocioException {
-        Author authorRecuperado = authorRepository.findAll().stream()
-                .filter(autor -> autor.getId().equals(id))
-                .findFirst()
+    private Author getAutor(Long id) throws RegraDeNegocioException {
+        return authorRepository.findById(id)
                 .orElseThrow(() -> new RegraDeNegocioException("Autor não encontrado!"));
-        return authorRecuperado;
     }
 
-    public AuthorDTO findById(Integer id) throws Exception {
-        return objectMapper.convertValue(getAutor(id), AuthorDTO.class);
+    public AuthorDTO findById(Long id) throws Exception {
+        Author author = getAutor(id);
+        return objectMapper.convertValue(author, AuthorDTO.class);
+    }
+    public List<Author> findAll() {
+        return authorRepository.findAll(); // Certifique-se de que findAll() retorna uma lista de autores
     }
 }

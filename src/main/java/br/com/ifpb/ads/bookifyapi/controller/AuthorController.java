@@ -15,7 +15,7 @@ public class AuthorController {
     private final AuthorService authorService;
 
     @GetMapping("/{id}")
-    public AuthorDTO findById(@PathVariable Integer id) throws Exception {
+    public AuthorDTO findById(@PathVariable Long id) throws Exception {
         return authorService.findById(id);
     }
 }
