@@ -16,7 +16,6 @@ public class AuthorDTO {
 
     private String nome;
 
-    private List<Book> livros;
     public String getNome() {
         return nome;
     }
