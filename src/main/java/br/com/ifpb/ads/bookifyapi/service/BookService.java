@@ -30,10 +30,9 @@ public class BookService {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
 
-    public List<BookDTO> findAll() {
-        return bookRepository.findAll().stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+    public Page<BookDTO> findAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("title"));
+        return bookRepository.findAll(pageable).map(this::convertToDTO);
     }
 
     public BookDTO findById(Long id) {

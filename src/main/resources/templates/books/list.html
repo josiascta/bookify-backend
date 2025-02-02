@@ -29,6 +29,19 @@
         </tr>
         </tbody>
     </table>
+
+    <!-- Botões de Paginação -->
+    <div class="mt-4 flex justify-between">
+        <a th:if="${currentPage > 0}" th:href="@{/books(page=${currentPage - 1})}"
+           class="bg-gray-300 text-black px-4 py-2 rounded shadow">
+            Página Anterior
+        </a>
+
+        <a th:if="${hasNextPage}" th:href="@{/books(page=${currentPage + 1})}"
+           class="bg-gray-300 text-black px-4 py-2 rounded shadow">
+            Próxima Página
+        </a>
+    </div>
 </div>
 </body>
 </html>

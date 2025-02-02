@@ -27,8 +27,14 @@ public class BookController {
     private final AuthorRepository authorRepository;
 
     @GetMapping
-    public String listBooks(Model model) {
-        model.addAttribute("books", bookService.findAll());
+    public String listBooks(@RequestParam(defaultValue = "0") int page, Model model) {
+        int pageSize = 5; // Defina quantos livros exibir por página
+        Page<BookDTO> bookPage = bookService.findAll(page, pageSize);
+
+        model.addAttribute("books", bookPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("hasNextPage", bookPage.hasNext());
+
         return "books/list";
     }
 
