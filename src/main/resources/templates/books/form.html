@@ -38,17 +38,20 @@
         <input type="radio" id="indisponivel" name="disponibilidade" value="Indisponivel" class="mr-2">
         <label for="indisponivel">Indisponível</label>
       </div>
+    </div> <!-- Fechamento correto da <div> -->
 
     <!-- Checkbox para confirmação -->
     <div class="mb-4 flex items-center">
       <input type="checkbox" id="confirm-checkbox" class="mr-2">
       <label for="confirm-checkbox" class="text-gray-700">Confirmo que as informações estão corretas.</label>
-    </div>
+    </div> <!-- Fechamento correto da <div> -->
 
     <!-- Botão de Salvar, inicialmente desabilitado -->
     <button type="submit" id="save-button" class="bg-blue-500 text-white px-4 py-2 rounded" disabled>Salvar</button>
     <a href="/books" class="ml-2 text-gray-500">Cancelar</a>
-  </form>
+
+  </form> <!-- Fechamento correto da <form> -->
+
 </div>
 
 <!-- Script para habilitar o botão somente se o checkbox estiver marcado -->
@@ -63,5 +66,6 @@
     });
   });
 </script>
+
 </body>
 </html>
