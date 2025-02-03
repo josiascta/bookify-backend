@@ -28,11 +28,40 @@
                 th:text="${author.nome}"
                 th:selected="${book.autores != null and #lists.contains(book.autores, author.id)}"></option>
       </select>
-
     </div>
-    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Salvar</button>
+    <div class="mb-4">
+      <label class="block text-gray-700 mb-2">Disponibilidade</label>
+      <div class="flex items-center">
+        <input type="radio" id="disponivel" name="disponibilidade" value="Disponivel" class="mr-2">
+        <label for="disponivel" class="mr-4">Disponível</label>
+
+        <input type="radio" id="indisponivel" name="disponibilidade" value="Indisponivel" class="mr-2">
+        <label for="indisponivel">Indisponível</label>
+      </div>
+
+    <!-- Checkbox para confirmação -->
+    <div class="mb-4 flex items-center">
+      <input type="checkbox" id="confirm-checkbox" class="mr-2">
+      <label for="confirm-checkbox" class="text-gray-700">Confirmo que as informações estão corretas.</label>
+    </div>
+
+    <!-- Botão de Salvar, inicialmente desabilitado -->
+    <button type="submit" id="save-button" class="bg-blue-500 text-white px-4 py-2 rounded" disabled>Salvar</button>
     <a href="/books" class="ml-2 text-gray-500">Cancelar</a>
   </form>
 </div>
+
+<!-- Script para habilitar o botão somente se o checkbox estiver marcado -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const checkbox = document.getElementById('confirm-checkbox');
+    const saveButton = document.getElementById('save-button');
+
+    // Ao carregar, o botão já está desabilitado (disabled no HTML)
+    checkbox.addEventListener('change', function() {
+      saveButton.disabled = !this.checked;
+    });
+  });
+</script>
 </body>
 </html>
