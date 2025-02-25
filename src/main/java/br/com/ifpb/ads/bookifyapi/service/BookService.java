@@ -43,11 +43,10 @@ public class BookService {
     }
 
     private Book getBook(Integer id) throws RegraDeNegocioException {
-        Book bookRecuperado = bookRepository.findAll().stream()
+        return bookRepository.findAll().stream()
                 .filter(book -> book.getId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new RegraDeNegocioException("Livro não encontrado!"));
-        return bookRecuperado;
     }
 
     public BookDTO findById(Integer id) throws Exception {

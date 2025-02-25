@@ -41,4 +41,7 @@ public class Book {
     @JsonIgnoreProperties("livros")
     private List<Author> autores;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "categoria")
+    private Category category;
 }

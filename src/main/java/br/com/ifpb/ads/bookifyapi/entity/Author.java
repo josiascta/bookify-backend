@@ -25,7 +25,4 @@ public class Author {
     @Column(name = "nome")
     private String name;
 
-    @ManyToMany(mappedBy = "autores")
-    @JsonIgnoreProperties("autores")
-    private List<Book> livros;
 }

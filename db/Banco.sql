@@ -10,12 +10,6 @@ GRANT CREATE TABLE TO BOOKIFY;
 GRANT GLOBAL QUERY REWRITE TO BOOKIFY;
 GRANT SELECT ANY TABLE TO BOOKIFY;
 
--- Tabela de Categorias
-CREATE TABLE CATEGORIA (
-    id_categoria NUMBER PRIMARY KEY,
-    nome VARCHAR2(100) UNIQUE
-);
-
 CREATE SEQUENCE SEQ_CATEGORIA
     START WITH 1
     INCREMENT BY 1
@@ -50,7 +44,8 @@ CREATE TABLE LIVRO (
     id_livro NUMBER PRIMARY KEY,
     titulo VARCHAR2(100),
     quantidade_estoque NUMBER,
-    preco DECIMAL(10, 2)
+    preco DECIMAL(10, 2),
+    categoria VARCHAR2(50) NOT NULL
 );
 
 CREATE SEQUENCE SEQ_LIVRO
@@ -120,11 +115,4 @@ CREATE TABLE LIVRO_AUTOR (
     CONSTRAINT fk_livro_autor_autor FOREIGN KEY (id_autor) REFERENCES AUTOR(id_autor) ON DELETE CASCADE
 );
 
--- Tabela Intermediária para Relação Many-to-Many entre LIVRO e CATEGORIA
-CREATE TABLE LIVRO_CATEGORIA (
-    id_livro NUMBER,
-    id_categoria NUMBER,
-    PRIMARY KEY (id_livro, id_categoria),
-    CONSTRAINT fk_livro_categoria_livro FOREIGN KEY (id_livro) REFERENCES LIVRO(id_livro) ON DELETE CASCADE,
-    CONSTRAINT fk_livro_categoria_categoria FOREIGN KEY (id_categoria) REFERENCES CATEGORIA(id_categoria) ON DELETE CASCADE
-);
+

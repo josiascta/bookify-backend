@@ -1,27 +1,20 @@
 package br.com.ifpb.ads.bookifyapi.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.*;
+public enum Category {
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@Entity(name = "CATEGORIA")
-public class Category {
+    FICCAO,
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CATEGORIA")
-    @SequenceGenerator(name = "SEQ_CATEGORIA", sequenceName = "SEQ_CATEGORIA", allocationSize = 1)
-    @Column(name = "id_categoria")
-    private long id;
+    NAO_FICCAO,
 
-    @Column(name = "name")
-    private String name;
+    CIENCIA,
 
+    HISTORIA,
 
+    FANTASIA,
+
+    BIOGRAFIA,
+
+    MISTERIO
 }
