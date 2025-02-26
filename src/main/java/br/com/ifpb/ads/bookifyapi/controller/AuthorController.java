@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @Validated
 @RequiredArgsConstructor
@@ -31,4 +33,11 @@ public class AuthorController {
         Page<AuthorDTO> authors = authorService.findAll(page, size, sortField, sortDirection);
         return ResponseEntity.ok(authors);
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<AuthorDTO>> listWithoutPaging(){
+        return ResponseEntity.ok(authorService.findAll());
+    }
+
+
 }

@@ -15,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class AuthorService {
@@ -45,6 +47,14 @@ public class AuthorService {
 
     private AuthorDTO convertToDTO(Author author) {
         return objectMapper.convertValue(author, AuthorDTO.class);
+    }
+
+    public List<AuthorDTO> findAll() {
+            return authorRepository.findAll()
+                    .stream()
+                    .map(this::convertToDTO)
+                    .toList();
+
     }
 
 }

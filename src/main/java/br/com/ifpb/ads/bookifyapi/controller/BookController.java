@@ -18,7 +18,6 @@ import javax.validation.Valid;
 @Validated
 @RequiredArgsConstructor
 @RequestMapping("/livro")
-@CrossOrigin(origins = "http://localhost:5173")
 public class BookController {
 
     private final BookService bookService;
