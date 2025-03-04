@@ -1,7 +1,6 @@
 package br.com.ifpb.ads.bookifyapi.controller;
 
 import br.com.ifpb.ads.bookifyapi.dto.AuthorDTO;
-import br.com.ifpb.ads.bookifyapi.dto.BookDTO;
 import br.com.ifpb.ads.bookifyapi.service.AuthorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

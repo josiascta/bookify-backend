@@ -1,28 +1,26 @@
 package br.com.ifpb.ads.bookifyapi.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.List;
+import jakarta.persistence.*;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = "AUTOR")
+@Entity
+@Table(name = "autor")
 public class Author {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_AUTOR")
-    @SequenceGenerator(name = "SEQ_AUTOR", sequenceName = "SEQ_AUTOR", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_autor")
     private Integer id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false, unique = true)
     private String name;
-
 }

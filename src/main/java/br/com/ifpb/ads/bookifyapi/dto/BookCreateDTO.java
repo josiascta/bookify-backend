@@ -3,8 +3,8 @@ package br.com.ifpb.ads.bookifyapi.dto;
 import br.com.ifpb.ads.bookifyapi.entity.Category;
 import lombok.*;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 @AllArgsConstructor
