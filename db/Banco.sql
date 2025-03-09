@@ -42,7 +42,9 @@ CREATE TABLE LIVRO_AUTOR (
 CREATE TABLE USUARIO (
                          id_usuario SERIAL PRIMARY KEY,
                          login VARCHAR(100) UNIQUE NOT NULL,
-                         senha VARCHAR(255) NOT NULL
+                         senha VARCHAR(255) NOT NULL,
+                         nome VARCHAR(100) NOT NULL,
+                         sobrenome VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE CARGO (

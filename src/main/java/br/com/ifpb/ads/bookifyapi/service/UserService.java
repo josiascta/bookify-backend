@@ -1,6 +1,7 @@
 package br.com.ifpb.ads.bookifyapi.service;
 
 import br.com.ifpb.ads.bookifyapi.dto.UserCreateDTO;
+import br.com.ifpb.ads.bookifyapi.dto.UserDTO;
 import br.com.ifpb.ads.bookifyapi.entity.Role;
 import br.com.ifpb.ads.bookifyapi.entity.User;
 import br.com.ifpb.ads.bookifyapi.exception.RegraDeNegocioException;
@@ -11,9 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -38,17 +37,26 @@ public class UserService {
         return usuarioEntity;
     }
 
-    public Optional<User> findById(Integer id) {
-        return usuarioRepository.findById(id);
+    public Optional<UserDTO> findById(Integer id) {
+        User user = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        List<String> cargos = new ArrayList<>();
+        for(Role r : user.getCargos()){
+          String cargo = r.getNome().replace("ROLE_", "");
+
+          cargos.add(cargo);
+        }
+
+        UserDTO userDTO = objectMapper.convertValue(user, UserDTO.class);
+        userDTO.setCargos(cargos);
+
+        return Optional.of(userDTO);
     }
 
     public Integer getIdLoggedUser() {
         Integer findUserId = (Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return findUserId;
-    }
-
-    public Optional<User> getLoggedUser() throws RegraDeNegocioException {
-        return findById(getIdLoggedUser());
     }
 
     public Optional<User> findByLoginAndSenha(String login, String senha) {

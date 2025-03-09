@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Set;
 
@@ -18,7 +19,13 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
-    private Integer idUsuario;
+    private BigInteger idUsuario;
+
+    @Column(name = "nome")
+    private String nome;
+
+    @Column(name = "sobrenome")
+    private String sobrenome;
 
     @Column(name = "login")
     private String login;

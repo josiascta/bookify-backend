@@ -2,6 +2,7 @@ package br.com.ifpb.ads.bookifyapi.controller;
 
 import br.com.ifpb.ads.bookifyapi.dto.LoginDTO;
 import br.com.ifpb.ads.bookifyapi.dto.UserCreateDTO;
+import br.com.ifpb.ads.bookifyapi.dto.UserDTO;
 import br.com.ifpb.ads.bookifyapi.entity.User;
 import br.com.ifpb.ads.bookifyapi.exception.RegraDeNegocioException;
 import br.com.ifpb.ads.bookifyapi.security.TokenService;
@@ -34,5 +35,10 @@ public class AuthController {
     @PostMapping("/token")
     public String createToken(@RequestBody LoginDTO loginDTO) throws AuthenticationException {
         return tokenService.gerarToken(loginDTO);
+    }
+
+    @GetMapping("/{id}")
+    public Optional<UserDTO> findById(@PathVariable Integer id){
+        return userService.findById(id);
     }
 }
