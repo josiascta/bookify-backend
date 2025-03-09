@@ -26,11 +26,9 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults()) // Habilita CORS no Spring Security
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/auth/**").permitAll()
-                    .requestMatchers("/livro/**", "/autor/**", "/categoria/**").hasRole("ADMIN")
-                                    .requestMatchers(HttpMethod.GET,"/livro/**").hasRole("USER")
-                                    .requestMatchers(HttpMethod.GET,"/autor/**").hasRole("USER")
-                                    .requestMatchers(HttpMethod.GET,"/categoria/**").hasRole("USER");
-                            auth.anyRequest().authenticated();
+                            .requestMatchers(HttpMethod.GET, "/livro/**", "/autor/**", "/categoria/**").hasRole("USER")
+                            .requestMatchers("/livro/**", "/autor/**", "/categoria/**").hasRole("ADMIN")
+                            .anyRequest().authenticated();
                 }).addFilterBefore(securityFilter, BasicAuthenticationFilter.class);
 
         return http.build();
