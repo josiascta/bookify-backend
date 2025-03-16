@@ -62,4 +62,47 @@ public class UserService {
     public Optional<User> findByLoginAndSenha(String login, String senha) {
         return usuarioRepository.findByLoginAndSenha(login, senha);
     }
+
+    public List<UserDTO> listarTodos() {
+        List<User> usuarios = usuarioRepository.findAll();
+
+        List<UserDTO> usuariosDTO = new ArrayList<>();
+        for (User user : usuarios) {
+            List<String> cargos = new ArrayList<>();
+            for (Role r : user.getCargos()) {
+                String cargo = r.getNome().replace("ROLE_", "");
+                cargos.add(cargo);
+            }
+            UserDTO userDTO = objectMapper.convertValue(user, UserDTO.class);
+            userDTO.setCargos(cargos);
+            usuariosDTO.add(userDTO);
+        }
+
+        return usuariosDTO;
+    }
+
+    public void deletarUsuario(Integer id) {
+        User user = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        usuarioRepository.delete(user);
+    }
+
+    public User tornarAdmin(Integer id) throws RegraDeNegocioException {
+        User user = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        Role adminRole = cargoService.findByNome("ROLE_ADMIN"); // Agora busca pelo nome
+
+        // Remove todos os cargos que não sejam ADMIN
+        user.getCargos().removeIf(role -> !role.getNome().equals("ROLE_ADMIN"));
+
+        user.getCargos().add(adminRole);
+        usuarioRepository.save(user);
+
+        return user;
+    }
+
+
+
 }

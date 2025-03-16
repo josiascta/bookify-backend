@@ -22,4 +22,10 @@ public class UserCreateDTO {
 
     @NotEmpty
     private List<Integer> cargos;
+
+    @NotEmpty
+    private String nome;
+
+    @NotEmpty
+    private String sobrenome;
 }

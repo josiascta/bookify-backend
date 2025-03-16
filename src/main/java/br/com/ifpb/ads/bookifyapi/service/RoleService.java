@@ -27,4 +27,10 @@ public class RoleService {
     public List<Role> findAllById(List<Integer> idCargo) {
         return cargoRepository.findAllById(idCargo);
     }
+
+    public Role findByNome(String nome) throws RegraDeNegocioException {
+        return cargoRepository.findByNome(nome)
+                .orElseThrow(() -> new RegraDeNegocioException("Cargo não encontrado!"));
+    }
+
 }
