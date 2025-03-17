@@ -19,7 +19,6 @@ public class UserController {
     private final UserService userService;
 
 
-    @Autowired
     private ObjectMapper objectMapper;
 
 
@@ -50,6 +49,13 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage()); // Retorna erro 400 com a mensagem da exceção
         }
     }
+
+    @PutMapping("/{id}/remover-admin")
+    public ResponseEntity<User> removerAdmin(@PathVariable Integer id) throws RegraDeNegocioException {
+        User usuario = userService.removerAdmin(id);
+        return ResponseEntity.ok(usuario);
+    }
+
 
 
 }

@@ -8,9 +8,11 @@ import br.com.ifpb.ads.bookifyapi.exception.RegraDeNegocioException;
 import br.com.ifpb.ads.bookifyapi.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 
@@ -100,6 +102,20 @@ public class UserService {
         user.getCargos().add(adminRole);
         usuarioRepository.save(user);
 
+        return user;
+    }
+
+
+    public User removerAdmin(Integer id) throws RegraDeNegocioException {
+        User user = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        Role adminRole = cargoService.findByNome("ROLE_ADMIN");
+
+        // Remove o cargo de ADMIN se o usuário tiver
+        user.getCargos().remove(adminRole);
+
+        usuarioRepository.save(user);
         return user;
     }
 
